@@ -40,6 +40,8 @@ namespace SpaceGame
         
         internal Planet(string name, string resource, Difficulty difficulty, int goldCost, int fuelCost, int hullCost)
         {
+           
+
             Random r = new Random();
             this.PlanetName = name;
             this.PlanetResource = resource;
@@ -63,6 +65,7 @@ namespace SpaceGame
 
         internal string ShowStore(Planet planet, Ship ship)
         {
+            
             Menu.ShowBanner(planet.PlanetName, ship);
             return $"Gold is available for {planet.PlanetGoldCost} coin\n" +
                 $"Fuel is available for {planet.PlanetFuelCost} coin\n" +
@@ -183,7 +186,7 @@ namespace SpaceGame
         internal string Mine(int days, Ship ship, Planet planet)
         {
             string message = "";
-            if (days > ship.Time) message = "You can't mine this long or Earth will perish!";
+            if (days >= ship.Time) message = "You can't mine this long or Earth will perish!";
             else
             {
                 int x = 0;

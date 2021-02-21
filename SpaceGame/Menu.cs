@@ -20,6 +20,7 @@ namespace SpaceGame
 
         public void ShowMainMenu(int length = 50)
         {
+            Console.ForegroundColor = ConsoleColor.Red;
             string message = "Main Menu";
             int frameSize = length;
             int center = ((frameSize / 2) + (message.Length / 2));
@@ -52,6 +53,7 @@ namespace SpaceGame
 
         static public void ShowBanner(string message, Ship ship, int length = 50)
         {
+            
             int frameSize = length;
             int center = ((frameSize / 2) + (message.Length / 2));
             message = message.PadLeft(center, '-').PadRight(frameSize, '-');
@@ -59,7 +61,7 @@ namespace SpaceGame
 
             string coin = $"Coin: {ship.Coins}";
             string gold = $"Gold: {ship.Gold}/{ship.GoldMax}";
-            string time = $"Time: {ship.Time}";
+            string time = $"Days left: {ship.Time}";
             string fuel = $"Fuel: {ship.Fuel}/{ship.FuelMax}";
             string hull = $"Hull: {ship.Hull}/{ship.HullMax}";
             Console.SetCursorPosition(Console.WindowWidth - 15, Console.CursorTop + 1);
@@ -72,7 +74,7 @@ namespace SpaceGame
             Console.Write(hull);
             Console.SetCursorPosition(Console.WindowWidth - 15, Console.CursorTop + 1);
             Console.Write(time);
-            Console.SetCursorPosition(0, Console.CursorTop - 3);
+            Console.SetCursorPosition(0, Console.CursorTop - 5);
 
         }
 
@@ -131,8 +133,7 @@ namespace SpaceGame
 
         static public string StoreBuyMenu(Planet planet, Ship ship)
         {
-            Console.Clear();
-
+            Console.Clear();            
             Menu.ShowBanner(planet.PlanetName, ship);
             Console.WriteLine($"[1] Gold is available for {planet.PlanetGoldCost} coin\n" +
                 $"[2] Fuel is available for {planet.PlanetFuelCost} coin\n" +
@@ -166,7 +167,7 @@ namespace SpaceGame
         }
         static public string StoreSellMenu(Planet planet, Ship ship)
         {
-            Console.Clear();
+            Console.Clear();            
             Menu.ShowBanner(planet.PlanetName, ship);
             Console.WriteLine($"Select What you would like to Sell:\n[1] Gold\n[2] Fuel\n[3] Hull");
             int choice = GetUserInput(3);

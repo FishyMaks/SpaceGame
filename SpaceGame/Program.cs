@@ -60,6 +60,10 @@ namespace SpaceGame
                 Difficulty difficulty = Utility.PromptUserForDifficulty(); //this will be default
                 Console.Clear();
 
+
+
+
+
                 // initialize planets
                 Planet p1 = new Planet("Gallifrey", "Gold", difficulty, 15, 100, 100);
                 Planet p2 = new Planet("Cadia", "Gold", difficulty, 15, 100, 100);
@@ -94,6 +98,7 @@ namespace SpaceGame
                 while (!CheckGameOver(ship))
                 {
                     Console.Clear();
+                    Console.ForegroundColor = ConsoleColor.Cyan;
                     Menu.ShowBanner(CurrentPlanet.PlanetName, ship);
                     Console.WriteLine(CurrentPlanet.ShowPlanetMenu(CurrentPlanet)); //"mine, store, sell, buy, getN&R, travel"
 
@@ -102,6 +107,7 @@ namespace SpaceGame
                     if (userInput == (int)PlanetOptions.store)
                     {
                         //ShowStore
+                        Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine(CurrentPlanet.ShowStore(CurrentPlanet, ship));
                         Console.WriteLine("Select [1] to buy, [2] to sell or [3] to cancel: ");
                         //int selection = Menu.GetUserInput(3);
@@ -110,6 +116,7 @@ namespace SpaceGame
                         userInput = Menu.GetUserInput(3);
                         if (userInput == (int)Store.buy) //input == 1
                         {
+                            Console.ForegroundColor = ConsoleColor.Yellow;
                             //get string of material, get amount they want(int)
                             string material = Menu.StoreBuyMenu(CurrentPlanet, ship);
                             if (material == "gold" || material == "fuel" || material == "hull")
@@ -128,6 +135,7 @@ namespace SpaceGame
                         }
                         else if (userInput == (int)Store.sell) //input == 2
                         {
+                            Console.ForegroundColor = ConsoleColor.Blue;
                             string material = Menu.StoreSellMenu(CurrentPlanet, ship);
                             int amount = Menu.GetAmount("sell"); //"how much would you like to SELL"
                             Console.WriteLine(CurrentPlanet.Sell(material, amount, ship, CurrentPlanet));
@@ -136,6 +144,7 @@ namespace SpaceGame
                         }
                         else if (userInput == (int)Store.cancel) //return user to previous menu
                         {
+                            
                             Console.WriteLine("Returning to planet menu...");
                             Thread.Sleep(2000);
                         }
